@@ -313,17 +313,27 @@ var modules = {
             watch: watch,
             devtool: 'source-map',
             module: {
-                loaders: [{
-                    test: /\.css$/,
-                    loader: ExtractTextPlugin.extract(['css', 'postcss'])
-                }, {
-                    test: new RegExp('\.' + config.style.options.suffix + '$'),
-                    loader: ExtractTextPlugin.extract(['css', 'postcss', config.style.options.suffix])
-                }, {
+                loaders: [
+                // {
+                //     test: /\.css$/,
+                //     loader: ExtractTextPlugin.extract(['css', 'postcss'])
+                // }, {
+                //     test: new RegExp('\.' + config.style.options.suffix + '$'),
+                //     loader: ExtractTextPlugin.extract(['css', 'postcss', config.style.options.suffix])
+                // },
+                { test: /\.css$/, loader: "style!css" },
+                { test: /\.less$/, loader: "style!css!less" },
+                {
                     test: /\.js$/,
                     loader: 'babel-loader',
                     query: {
-                        presets: config.useReact ? ['react', 'es2015'] : ['es2015']
+                        presets: config.useReact ? ['react', 'es2015','stage-0'] : ['es2015']
+                    }
+                },{
+                    test: /\.jsx$/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: config.useReact ? ['react', 'es2015','stage-0'] : ['es2015']
                     }
                 }, {
                     test: new RegExp('\.' + config.template.options.suffix + '$'),
@@ -342,6 +352,13 @@ var modules = {
             'ejs-compiled-loader': {
                 htmlmin: true,
                 htmlminOptions: templateOptions.min
+            },
+            babel:{
+                plugins:[['antd', {
+                    style: 'css'
+                //}],'transform-runtime']
+                }]]
+                // plugins: ['transform-runtime', ["antd",  { "style": "css" }]]
             },
             //增加异步加载js配置
             output: {
