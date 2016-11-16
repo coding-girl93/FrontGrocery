@@ -1,0 +1,13 @@
+{
+  "name": "reset",
+  "homepage": "https://github.com/longjiarun/reset",
+  "_release": "25b3dc4dc6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "25b3dc4dc64c22d67bc63d6283efb063c31ed53a"
+  },
+  "_source": "https://github.com/longjiarun/reset.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/longjiarun/reset.git"
+}

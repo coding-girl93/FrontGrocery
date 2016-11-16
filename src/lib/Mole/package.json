@@ -1,0 +1,27 @@
+{
+  "name": "@vdian/mole",
+  "version": "2.1.2",
+  "description": "h5log",
+  "main": "dist/index.debug.js",
+  "scripts": {
+    "dev": "node buildfile.js dev",
+    "test": "node buildfile.js test",
+    "start": "node buildfile.js start",
+    "prod": "node buildfile test",
+    "testhijack": "node buildfile testhijack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.vdian.net:60022/v-components/mole.git"
+  },
+  "author": "fudongguang",
+  "license": "ISC",
+  "devDependencies": {
+    "@vdian/fcomponent": "latest",
+    "co": "^4.6.0",
+    "finalhandler": "^0.4.1",
+    "gulp": "^3.9.1",
+    "node-static": "^0.7.7",
+    "uglify-js": "^2.6.2"
+  }
+}

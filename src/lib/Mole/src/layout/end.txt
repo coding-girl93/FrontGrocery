@@ -1,0 +1,7 @@
+} catch (e) {
+        console.log(e)
+    };
+}
+
+var jsMoleEndTime = new Date().getTime();
+Mole.performance.custom('molejs',jsMoleEndTime-jsMoleStartTime);

@@ -1,0 +1,33 @@
+{
+  "name": "hap",
+  "description": "脚手架",
+  "main": "gulpfile.js",
+  "authors": [
+    "longjia"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "webpack",
+    "component",
+    "bower",
+    "hap"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "media": "https://github.com/longjiarun/media.git",
+    "reset": "https://github.com/longjiarun/reset.git",
+    "kub": "latest",
+    "Mole": "http://gitlab.vdian.net/v-components/Mole.git",
+    "zepto" : "http://gitlab.vdian.net/v-components/vdzepto.git"
+  }
+}

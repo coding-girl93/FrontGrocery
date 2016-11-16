@@ -1,0 +1,4 @@
+var jsMoleStartTime = new Date().getTime();
+
+if(window.location.href.indexOf('/fx')===-1 || window.location.href.indexOf('weidian.com/item.html')===-1 || Math.random()*10<=3 || window.location.href.indexOf('debug')>-1) {
+    try {

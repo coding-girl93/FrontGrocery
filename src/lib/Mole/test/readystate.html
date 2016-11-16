@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="spider-id" content="wi0t6y"/>
+    <script type="text/javascript" src="../src/mole.js"></script>
+    <script type="text/javascript" src="../src/log.js"></script>
+    <script type="text/javascript" src="../src/performance.js"></script>
+</head>
+<body data-spider="aaaa">
+
+<script type="text/javascript">
+    !(function () {
+        var ajax = function (opts) {
+            var xhr = new XMLHttpRequest()
+
+            xhr.open(opts.type.toUpperCase() || 'GET', opts.url, true)
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                        opts.success && opts.success(xhr.responseText, xhr)
+                    } else {
+                        opts.error && opts.error(xhr.statusText || null, xhr.status ? 'error' : 'abort', xhr)
+                    }
+                }
+            }
+
+            var xhrFields = opts.xhrFields, name
+            if (xhrFields) {
+                for (name in xhrFields) xhr[name] = xhrFields[name]
+            }
+
+            var headers = opts.headers || {},
+                    accept = 'Accept',
+                    contentType = 'Content-Type'
+
+            headers[accept] = headers[accept] || '*/*'
+            headers[contentType] = headers[contentType] || 'application/x-www-form-urlencoded'
+
+            if (headers) {
+                for (name in headers) xhr.setRequestHeader(name, headers[name])
+            }
+
+            xhr.send(opts.data || null)
+            return xhr
+        }
+
+        if (typeof module !== 'undefined' && module.exports) {
+            module.exports = ajax
+        } else {
+            window.ajax = ajax
+        }
+    })();
+
+    ajax({
+        type:'get',
+        url:"./test.html",
+        headers:{
+            "Accept":111
+        },
+        success:function(res){
+            console.log(res);
+        }
+    })
+
+
+    ajax({
+        type:'get',
+        url:"./test12222222.html",
+        success:function(res){
+            console.log(res);
+        }
+    })
+
+
+</script>
+</body>
+</html>

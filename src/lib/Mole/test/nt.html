@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="spider-id" content="wi0t6y"/>
+    <script type="text/javascript" src="../build/static/index.js?v=122223"></script>
+    <script type="text/javascript" src="./zepto.js"></script>
+</head>
+<body data-spider="aaaa">
+
+
+
+<script type="text/javascript">
+    Mole.performance.firstScreenTime(1);
+</script>
+
+
+<script type="text/javascript">
+    (function () {
+        window.addEventListener('load', function () {
+
+            setTimeout(function () {
+                alert(window.WeixinJSBridge);
+                if (!window.WeixinJSBridge) {
+                    return false;
+                }
+
+
+                var script = document.createElement('script');
+                script.async = 'async';
+                script.src = '//assets.geilicdn.com/v-components/share/0.0.7/index.js';
+
+
+                script.onload = function () {
+                    var share = new Kub.share({
+                        imgUrl: 'https://si.geilicdn.com/2c3082e2c094fbf480ecf710b9ac51f5.png',
+                        title: '在微店找到你想要的',
+                        desc: '这里有好多东西,等你来挖掘哟~',
+                        pyq: '这里有好多东西,等你来挖掘哟~',
+                        link: window.location.origin + '/m/search/index/index.html',
+                        type: 1,
+                        callback: function (type) {
+                            switch (type) {
+                                case '微信好友':
+                                    _paq.push(['trackEvent', '微店搜索_微信好友', 'click', '']);
+                                    break;
+                                case '朋友圈':
+                                    _paq.push(['trackEvent', '微店搜索_朋友圈', 'click', '']);
+                                    break;
+                                case 'QQ好友':
+                                    _paq.push(['trackEvent', '微店搜索_QQ', 'click', '']);
+                                    break;
+                                case '微博':
+                                    _paq.push(['trackEvent', '微店搜索_微博', 'click', '']);
+                                    break;
+                            }
+                        }
+                    });
+                };
+
+                $('body').append(script);
+            }, 1200)
+        })
+    }());
+</script>
+
+</body>
+</html>

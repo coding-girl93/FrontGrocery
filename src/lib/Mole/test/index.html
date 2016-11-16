@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="spider-id" content="wi0t6y"/>
+    <!--<script type="text/javascript" src="../src/mole.js"></script>-->
+    <!--<script type="text/javascript" src="../src/log.js"></script>-->
+    <!--<script type="text/javascript" src="../src/performance.js"></script>-->
+    <script type="text/javascript" src="../build/static/index.js"></script>
+</head>
+<body data-spider="aaaa">
+
+
+<script type="text/javascript">
+
+    Mole.log.debug('11');
+    Mole.log.debug('22');
+
+    setTimeout(function () {
+        throw 111;
+    }, 2200);
+
+
+    setTimeout(function () {
+        $.ajax({
+            url: 'http://fdg.weidian.com/static/h5log/testw/',
+            type: 'get',
+            data: {
+                a: 1
+            },
+            error: function () {
+            },
+            success: function (res) {
+            }
+        })
+    }, 3000)
+
+
+    setTimeout(function () {
+        $.ajax({
+            url: 'http://fdg.weidian.com:8083/test/moletest/outtime.php',
+            type: 'post',
+            data: {
+                a: 1
+            },
+            error: function () {
+            },
+            success: function (res) {
+                Mole.performance.firstScreenTime(1);
+            }
+        })
+    }, 5000);
+
+//    setTimeout(function () {
+//        $.ajax({
+//            url: 'http://fdg.weidian.com:8083/test/moletest/outtime1.php',
+//            type: 'post',
+//            data: {
+//                a: 1
+//            },
+//            error: function () {
+//            },
+//            success: function (res) {
+//            }
+//        })
+//    }, 5000)
+
+</script>
+
+<script type="text/javascript" src="./zepto.js"></script>
+<!--<script type="text/javascript" src="http://fdg.weidian.com:8083/test/moletest/crosdomain.js" crossorigin></script>-->
+
+
+</body>
+</html>

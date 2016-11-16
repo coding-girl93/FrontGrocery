@@ -1,0 +1,12 @@
+{
+  "name": "Mole",
+  "_release": "e0183d2163",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e0183d21634bd3f302282163b13a628a94a5c3b8"
+  },
+  "_source": "http://gitlab.vdian.net/v-components/Mole.git",
+  "_target": "*",
+  "_originalSource": "http://gitlab.vdian.net/v-components/Mole.git"
+}

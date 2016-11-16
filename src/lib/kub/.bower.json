@@ -1,0 +1,47 @@
+{
+  "name": "kub",
+  "version": "2.2.0",
+  "description": "Kub Mobile JavaScript Components Library",
+  "main": "src/js/kub.js",
+  "authors": [
+    "longjia <longjiarun@qq.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/longjiarun/kubjs.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "kub",
+    "mobile",
+    "ui",
+    "webpack",
+    "component"
+  ],
+  "moduleType": [
+    "commonjs"
+  ],
+  "homepage": "https://github.com/longjiarun/kubjs",
+  "private": false,
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    ".npmignore",
+    "node_modules",
+    "bower_components",
+    "demo",
+    "build",
+    "test",
+    "server.js"
+  ],
+  "dependencies": {},
+  "_release": "2.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.2.0",
+    "commit": "5ec6c24f5fc6400b1eef76cb18b154f310751244"
+  },
+  "_source": "https://github.com/longjiarun/kubjs.git",
+  "_target": "*",
+  "_originalSource": "kub"
+}

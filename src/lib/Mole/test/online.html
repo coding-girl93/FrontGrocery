@@ -1,0 +1,1191 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>货源</title>
+    <link href="https://assets.geilicdn.com/fxxxx/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="//assets.geilicdn.com/hz_weidian_h5/css/common/base_2396008db2.css" type="text/css" rel="stylesheet">
+    <link href="//assets.geilicdn.com/hz_weidian_h5/css/others/app/sales/market_ac3d208b53.css" type="text/css"
+          rel="stylesheet">
+    <style type="text/css">#J_SearchContainer {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 10px 6px;
+        display: block
+    }
+
+    .search-input-wrap {
+        margin: 0
+    }
+
+    body {
+        padding-bottom: 50px
+    }
+
+    .category-list {
+        background: #fff;
+        margin: 12px 0;
+        overflow: hidden
+    }
+
+    .category-item {
+        float: left;
+        width: 25%;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 5px 15px;
+        position: relative
+    }
+
+    .category-img-wrapper {
+        width: 100%;
+        height: 0;
+        padding: 50% 0;
+        margin-bottom: 3px;
+        position: relative;
+        overflow: hidden;
+        background: #fff
+    }
+
+    .category-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%
+    }
+
+    .category-name {
+        font-size: 12px;
+        line-height: 18px;
+        color: grey
+    }
+
+    .category-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0
+    }
+
+    #J_Channels {
+        background: #fff;
+        margin-top: 12px
+    }
+
+    .channels {
+        width: 100%;
+        padding: 12.5% 0;
+        position: relative;
+        border-top: 1px solid #e8e8e8
+    }
+
+    .channels:first-child {
+        border-top: none
+    }
+
+    .channel {
+        background-size: contain;
+        background-position: 50%;
+        background-repeat: no-repeat
+    }
+
+    .dual .channel {
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        float: left;
+        border-right: 1px solid #e8e8e8
+    }
+
+    .dual .channel:nth-child(2) {
+        left: 50%;
+        border-right: 1px solid transparent
+    }
+
+    .triple .channel {
+        width: 33.3333%;
+        height: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        float: left;
+        border-right: 1px solid #e8e8e8
+    }
+
+    .triple .channel:nth-child(2) {
+        left: 33.3333%
+    }
+
+    .channel:nth-child(3) {
+        left: 66.6666%;
+        border-right: 1px solid transparent
+    }
+
+    .slide-wrap {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto
+    }
+
+    .slide-wrap li {
+        height: 100%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain
+    }</style>
+    <style></style>
+    <script>
+
+        try{(function(root){
+            var Mole = {};
+            root.Mole = Mole;
+
+            setTimeout(function(){
+                Mole.performance = Mole.performance || {};
+                Mole.performance.firstScreenTime = Mole.performance.firstScreenTime || function(){};
+                Mole.performance.custom = Mole.performance.custom || function(){};
+                Mole.log = Mole.log || {};
+                Mole.log.debug = Mole.log.debug || function(){};
+                Mole.log.error = Mole.log.error || function(){};
+            },0);
+
+
+            var vap ={
+                "online":"//vap.gw.weidian.com/h5/vdash/vdash.Hlog/1.0",
+                "pre":"//vap.gw.pre.weidian.com/h5/vdash/vdash.Hlog/1.0",
+                "daily":"//vap.gw.daily.weidian.com/h5/vdash/vdash.Hlog/1.0"
+            };
+
+            var onlineUrls = ['//h5.weidian.com','//weidian.com','//www.weidian.com','//fxh5.weidian.com'];
+
+
+            Mole.init = function (options) {
+                try {
+                    if(options.env===1 || options===0){
+                        alert('配置错误,options.env只能是daily,pre,online');
+                        return false;
+                    }
+                    MoleCxt.env = options.env || MoleCxt.env;
+                    MoleCxt.delay = options.delay || MoleCxt.delay;
+                    MoleCxt.RT = options.RT || MoleCxt.RT;
+                    MoleCxt.spma = options.spma || MoleCxt.spma;
+                    MoleCxt.spmb = options.spmb || MoleCxt.spmb;
+                    MoleCxt.version = options.version || MoleCxt.version;
+                }catch (e){}
+            };
+
+//---------------MoleCxt(mole插件上下文 插件开发者需要关注)--------------------------
+            root.MoleReg = function(func,name){
+                Mole[name] = new func(MoleCxt);
+            };
+
+
+            var MoleCxt = {
+                version: 'unknow', //业务版本号
+                env: /pre/.test(window.location.hostname)?'pre':'daily', //运行环境
+                delay: 2000, //延迟上报时间
+                RT: 5000,// 网络超时
+                spma: '', //业务
+                spmb: '' //页面
+            };
+
+            onlineUrls.forEach(function(v){
+                if(('//'+window.location.hostname).indexOf(v)>-1){
+                    MoleCxt.env = 'online';
+                }
+            });
+
+
+            MoleCxt.vap = vap;
+
+            MoleCxt.push = function(msg,isNow){
+                var self = this;
+
+                MoleCxtHandel._reportData = MoleCxtHandel._reportData || [];
+                MoleCxtHandel._reportData.push(msg);
+
+                if(isNow){
+                    MoleCxtHandel._send();
+                }else{
+                    setTimeout(function(){
+                        MoleCxtHandel._send();
+                    },this.delay)
+                }
+            };
+
+//------------MoleCxtHandel------------------
+
+            var MoleCxtHandel = {};
+
+            MoleCxtHandel._setSpm = function () {
+                if (!MoleCxt.spma) {
+                    var spiderDom  = document.querySelector('meta[name="spider-id"]');
+                    MoleCxt.spma = spiderDom ? spiderDom.getAttribute('content') : '';
+                    if(!MoleCxt.spma){
+                        alert('必须设置spma');
+                        return false;
+                    }
+                }
+
+                if (!MoleCxt.spmb) {
+                    MoleCxt.spmb = (document.body ? document.body.dataset.spider : '') || '';
+                }
+
+                if(!MoleCxt.spmb){
+                    MoleCxt.spmb = window.location.pathname;
+                }
+            };
+
+            MoleCxtHandel._reset = function(){
+                this._reportData = [];
+            };
+
+            MoleCxtHandel._send = function(){
+                if (!this._reportData || !this._reportData.length) {
+                    return false;
+                }
+
+                var logurl = vap[MoleCxt.env];
+                if (!logurl) {
+                    logurl = vap.daily;
+                }
+
+                var data = this._getData();
+                if(!data){
+                    return false;
+                }
+
+                //var imgEl = document.createElement('img');
+                //imgEl.style.display = 'none';
+                //imgEl.src = logurl + '?meta=' + encodeURIComponent(JSON.stringify(data)) + '&_t=' + new Date().getTime().toString() + parseInt(Math.random() * 1000).toString();
+                //imgEl.onload = function () {
+                //    document.body.removeChild(imgEl);
+                //};
+                //imgEl.onerror = function () {
+                //    document.body.removeChild(imgEl);
+                //};
+                //document.body.appendChild(imgEl);
+
+
+                this._ajax({
+                    type: "POST",
+                    url: logurl,
+                    data: 'meta='+encodeURIComponent(JSON.stringify(data)),
+                    success: function(msg) {
+                    }
+                });
+
+                this._reset();
+            };
+
+            MoleCxtHandel._getData = function(){
+                if (!MoleCxt.spma || !MoleCxt.spmb) {
+                    this._setSpm();
+                    if (!MoleCxt.spma || !MoleCxt.spmb) {
+                        this._reportData = [];
+                        alert('没有设置spm值');
+                        return false;
+                    }
+                }
+
+                var data = {
+                    spma: MoleCxt.spma,
+                    spmb: MoleCxt.spmb,
+                    version: MoleCxt.version,
+                    ua: window.navigator.userAgent,
+                    url: window.location.href,
+                    referrer: document.referrer,
+                    data: this._reportData
+                };
+
+                return data;
+            };
+
+
+            MoleCxtHandel._ajax=function (settings){
+                var xhr = new window.XMLHttpRequest();
+                xhr.withCredentials = true;
+                xhr.onreadystatechange = function() {
+
+                    if (xhr.readyState == 4) {
+                        xhr.onreadystatechange = function empty() {};
+                        var result,
+                                error = false;
+
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            result = xhr.responseText;
+
+                            try {
+                                result = JSON.parse(result);
+                            } catch (e) {
+                                error = e;
+                            }
+
+                            if (!error) {
+                                settings.success(result, xhr);
+                            }
+                        }
+                    }
+                };
+                xhr.open(settings.type, settings.url, true);
+                //xhr.setRequestHeader('Accept','application/json');
+
+                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+                xhr.send(settings.data ? settings.data : null);
+                return xhr;
+            };
+
+
+
+
+            if (typeof module !== "undefined" && module.exports) {
+                module.exports = Mole;
+            }
+        }(this));
+
+            /**
+             * Created by fudongguang on 16/5/27.
+             */
+            (function(root){
+                var type = 'log';
+
+                var isObject = function (msg) {
+                    return Object.prototype.toString.call(msg) === '[object Object]';
+                };
+
+                var isString = function (msg) {
+                    return Object.prototype.toString.call(msg) === '[object String]';
+                };
+
+                var isNumber = function (msg) {
+                    return Object.prototype.toString.call(msg) === '[object Number]';
+                };
+
+                var isArray = function (msg) {
+                    return Object.prototype.toString.call(msg) === '[object Array]';
+                };
+
+                var log = function (cxt) {
+                    this._cxt = cxt;
+                    this.init();
+                };
+
+                log.prototype.init = function () {
+                    var self = this;
+                    this._rewriteXHR();
+                    /**
+                     * window.onerror
+                     * @param msg  错误msg
+                     * @param url   出错url
+                     * @param line  出错行
+                     * @param col   出错竖
+                     * @param error  error堆栈
+                     */
+                    root.onerror = function (msg, url, line, col, error) {
+                        self.error(JSON.stringify({errorMsg: msg, line: line, col:col, info: error? (error.stack || '') : ''}),401);
+                    };
+
+                };
+
+                /**
+                 * 重写xhr open
+                 * @private
+                 */
+                log.prototype._rewriteXHR = function () {
+                    var self = this;
+                    var open = XMLHttpRequest.prototype.open;
+                    var request = {};
+
+                    XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+                        request.url = url;
+                        request.method = method;
+
+                        return open.apply(this, arguments);
+                    };
+
+                    var send = XMLHttpRequest.prototype.send;
+                    XMLHttpRequest.prototype.send = function (data) {
+
+                        var requestTimeout = setTimeout(function () {
+                            if(!self._checkMoleVapPushed(request.url,'warning')){
+                                return false;
+                            }
+
+                            request.status = 0;
+                            request.statusText = '请求超时';
+                            self._warning(JSON.stringify(request));
+                        }, self._cxt.RT);
+
+                        var oldReady = this.onreadystatechange;
+
+                        this.onreadystatechange = function () {
+                            if (this.readyState === 4) {
+                                clearTimeout(requestTimeout);
+
+                                if (this.status<200 || (this.status>=300 && this.status!==304)) {
+                                    if(!self._checkMoleVapPushed(request.url,'fail')){
+                                        return false;
+                                    }
+
+                                    request.status = this.status;
+                                    request.statusText = this.statusText;
+
+                                    if(self._isMoleVap(request.url)){
+                                        self.error(JSON.stringify(request),420);
+                                    }else{
+                                        self.error(JSON.stringify(request),404);
+                                    }
+                                }
+                            }
+
+                            if(!oldReady){
+                                return false;
+                            }
+
+                            return oldReady.apply(this, arguments);
+                        };
+
+                        return send.apply(this, arguments);
+                    };
+                };
+
+                /***
+                 * mole vap 接口只推送一次,防止因为mole vap挂了后,进入死循环上报
+                 * @param url
+                 * @param type
+                 * @private
+                 */
+                log.prototype._checkMoleVapPushed = function (url, type) {
+                    if(this._isMoleVap(url)){
+                        this._MoleVapPushed = this._MoleVapPushed || {};
+                        var key = encodeURIComponent(url + type);
+
+                        if (this._MoleVapPushed[key]) {
+                            return false;
+                        } else {
+                            this._MoleVapPushed[key] = true;
+                            return true;
+                        }
+                    }else{
+                        return true;
+                    }
+                };
+
+                /**
+                 * 判断url是不是vap接口
+                 * @param url
+                 * @returns {boolean}
+                 * @private
+                 */
+                log.prototype._isMoleVap = function(url){
+                    var check = false,
+                            self = this;
+                    Object.keys(this._cxt.vap).forEach(function(key){
+                        if (url.indexOf(self._cxt.vap[key]) > -1) {
+                            check = true;
+                        }
+                    });
+
+                    return check;
+                };
+
+                /**
+                 * debug日志上报
+                 * @param msg
+                 */
+                log.prototype.debug = function (msg) {
+                    try {
+                        if(!isString(msg)){
+                            return false;
+                        }
+
+                        var data = {
+                            msg: msg, level: 1, type: type
+                        };
+
+                        this._cxt.push(data);
+                    }catch (e){}
+                };
+
+                /**
+                 * 失败日志上报
+                 * @param msg
+                 * @param level   程序异常401，不安全域名403，网络异常404，自定义错误410，mole错误420  默认自定义错误
+                 */
+                log.prototype.error = function (msg,level) {
+                    try{
+                        if(!isString(msg)){
+                            return false;
+                        }
+
+                        var data = {
+                            msg: msg, level: level || 410, type: type
+                        };
+
+                        this._cxt.push(data,true);
+                    }catch (e){}
+                };
+
+                log.prototype._warning=function (msg) {
+                    if (!isString(msg)) {
+                        return false;
+                    }
+
+                    var data = {
+                        msg: msg, level: 2, type: type
+                    };
+
+                    this._cxt.push(data);
+                };
+
+                MoleReg(log,'log');
+
+            }(this));
+            (function() {
+                var support = {};
+                support.timing = window.performance && window.performance.timing;
+                support.resourceTiming = window.performance && window.performance.getEntries;
+                support.memory = window.performance && window.performance.memory;
+
+                var convert2PlainObject = function(instanceObj) {
+                    var obj = {};
+                    for (var key in instanceObj) {
+                        if (typeof instanceObj[key] !== "function") {
+                            obj[key] = instanceObj[key];
+                        }
+                    }
+                    return obj;
+                };
+
+
+                var  getElementTop = function(element){
+                    var actualTop = element.offsetTop;
+                    var current = element.offsetParent;
+                    while (current !== null){
+                        actualTop += current.offsetTop;
+                        current = current.offsetParent;
+                    }
+                    return actualTop;
+                };
+
+
+                var firstScreen = function(cxt){
+                    this._cxt = cxt;
+                };
+
+                var proto = firstScreen.prototype;
+                var _bgimgs = [];
+
+
+                proto._push = function(data){
+                    this._cxt.push(data);
+                };
+
+                proto.firstScreenTime = function(times,bgimgs){
+                    try {
+                        if(bgimgs && bgimgs.length){
+                            _bgimgs = _bgimgs.concat(bgimgs);
+                        }
+
+                        this._firstScreenTimes = this._firstScreenTimes || 0;
+                        this._firstScreenTimes++;
+
+                        if(this._firstScreenTimes===times){
+                            this._firstScreenTimeSrouce(_bgimgs);
+                        }
+
+                    }catch (e){}
+                };
+
+                proto._firstScreenTimeSrouce = function(bgimgs){
+                    bgimgs = bgimgs || [];
+                    var screenHeight = window.innerHeight;
+                    var self = this;
+
+                    if(!window.performance || !window.performance.timing){
+                        return;
+                    }
+
+                    var data = window.performance.timing;
+                    data = convert2PlainObject(data);
+                    data.perfType = 'firstScreen';
+                    data.type = 'performance';
+                    var time = new Date().getTime() - window.performance.timing.navigationStart;
+                    data.firstScreenCost = time;
+
+
+                    var imgs = [];
+                    var imgEls = document.querySelectorAll('body img');
+                    for(var i=0;i<imgEls.length;i++){
+                        var src = imgEls[i].getAttribute('src');
+                        var v = imgEls[i];
+                        var t = getElementTop(v);
+                        if(t>=document.body.scrollTop && t<=(screenHeight+document.body.scrollTop)){
+                            if(!v.complete || /placeholder/.test(src)){
+                                imgs.push(v);
+                            }
+                        }
+                    }
+
+
+                    if(!imgs.length && !bgimgs.length){
+                        self._cxt.push(data);
+                        return;
+                    }
+
+                    var index = 0;
+                    var tempfunc = function(){
+                        index++;
+                        if(index===imgs.length + bgimgs.length){
+                            time = new Date().getTime() - window.performance.timing.navigationStart;
+                            data.firstScreenCost = time;
+                            self._getFirstResouce(bgimgs.length+imgs.length);
+                            self._cxt.push(data);
+
+                        }
+                    };
+
+                    debugger
+
+                    imgs.forEach(function(img){
+                        self._imgOnload(img,function(){
+                            var src = img.getAttribute('src');
+                            if(/placeholder/.test(src)){
+                                self._imgOnload(img,function(){
+                                    tempfunc();
+                                });
+                            }else{
+                                tempfunc();
+                            }
+                        })
+                    });
+
+                    bgimgs.forEach(function (v) {
+                        var img = new Image();
+                        self._imgOnload(img,tempfunc);
+                        img.src = v;
+                    });
+
+                };
+
+                proto._imgOnload = function(img,func){
+                    img.onload = func;
+                    img.onerror = func;
+                };
+
+                proto._getFirstResouce = function(max){
+                    if(!support.resourceTiming){
+                        return false;
+                    }
+                    var self = this;
+
+                    var resourceTiming = window.performance.getEntries({"entryType": "resource"});
+
+                    resourceTiming = resourceTiming.map(function(performanceResourceTiming) {
+                        var name = performanceResourceTiming.name;
+                        if(name.indexOf('??')===-1){
+                            name = name.replace(/\?.+/,'');
+                        }
+
+                        if(max && /\.(css|js)/.test(name)){
+                            max++;
+                        }
+
+                        return {
+                            name: name,
+                            initiatorType: performanceResourceTiming.initiatorType,
+                            entryType: performanceResourceTiming.entryType,
+                            startTime: performanceResourceTiming.startTime,
+                            duration: performanceResourceTiming.duration,
+                            perfType:"resourceTiming",
+                            type:"performance"
+                        };
+                    });
+
+                    var index = 0;
+                    resourceTiming = resourceTiming.filter(function(performanceResourceTiming){
+                        index++;
+
+                        if (performanceResourceTiming.startTime <= 0) {
+                            return false;
+                        }
+
+                        if (performanceResourceTiming.duration <= 0) {
+                            return false;
+                        }
+
+                        if(max && index>max){
+                            return false;
+                        }
+
+
+                        var types = {
+                            "link":/\.(css)$/i,
+                            "img":/\.(png|jpg|jpeg|gif|webp)$/i
+                        };
+
+                        var linkReg = /\.(css)$/i;
+                        var linkReg = /\.(css)$/i;
+                        var mediaReg = /\.(MP3|AAC|WAV|OGG|MIDI|RM)$/i;
+                        var imageReg = /\.(png|jpg|jpeg|gif|webp)$/i;
+                        var vapReg = /\.vap\.gw\.weidian\.com$/i;
+
+                        if(linkReg.test(performanceResourceTiming.name)){
+                            performanceResourceTiming.initiatorType='link';
+                        }
+
+                        if(mediaReg.test(performanceResourceTiming.name)){
+                            performanceResourceTiming.initiatorType='media';
+                        }
+
+                        if(imageReg.test(performanceResourceTiming.name)){
+                            performanceResourceTiming.initiatorType='img';
+                        }
+
+                        if(vapReg.test(performanceResourceTiming.name)){
+                            performanceResourceTiming.initiatorType='vap';
+                        }
+
+                        return true;
+                    });
+
+
+                    resourceTiming.map(function(val){
+                        self._push(val);
+                    });
+                };
+
+                MoleReg(firstScreen,'firstScreen');
+            }());
+            (function () {
+                var support = {};
+                support.timing = window.performance && window.performance.timing;
+                support.resourceTiming = window.performance && window.performance.getEntries;
+                support.memory = window.performance && window.performance.memory;
+
+                var convert2PlainObject = function (instanceObj) {
+                    var obj = {};
+                    for (var key in instanceObj) {
+                        if (typeof instanceObj[key] !== "function") {
+                            obj[key] = instanceObj[key];
+                        }
+                    }
+                    return obj;
+                };
+
+
+                function performance(cxt) {
+                    this._cxt = cxt;
+
+                    var self = this;
+                    window.addEventListener('load', function () {
+                        setTimeout(function () {
+                            self._getPageTiming();
+                            self._memory();
+                        }, 0)
+                    });
+                }
+
+                var proto = performance.prototype;
+                proto._getPageTiming = function () {
+                    if (!support.timing) {
+                        return false;
+                    }
+
+                    var data = convert2PlainObject(window.performance.timing);
+                    data.firstPaint = 0;
+                    data.firstScreenPaint = 0;
+                    data.perfType = "pageTiming";
+                    data.type = "performance";
+
+                    this._push(data);
+                };
+
+                proto._push = function (data) {
+                    this._cxt.push(data);
+                };
+
+
+                proto._memory = function () {
+                    if (!support.memory) {
+                        return false;
+                    }
+
+                    var data = convert2PlainObject(window.performance.memory);
+                    data.perfType = "memory";
+                    data.type = "performance";
+
+                    this._push(data);
+                };
+
+
+                proto.custom = function (name, duration) {
+                    if (!support.timing) {
+                        return false;
+                    }
+
+                    try {
+                        if (!name) {
+                            return false;
+                        }
+
+                        duration = duration || 0;
+
+                        var endTime = new Date().getTime() - window.performance.timing.navigationStart;
+
+                        this._push({
+                            name: name,
+                            startTime: endTime-duration,
+                            duration: duration || 0,
+                            perfType: "custom",
+                            type: "performance"
+                        })
+                    } catch (e) {
+                    }
+
+                };
+
+                proto.firstScreenTime = function (times, bgimgs) {
+                    Mole.firstScreen.firstScreenTime(times, bgimgs);
+                };
+
+                MoleReg(performance, 'performance');
+            }());
+            /**
+             * Created by fudongguang on 16/7/05.
+             */
+            (function(root){
+                var type = 'hijack';
+                var urls = [
+                    '//assets.geilicdn.com/v-components/cdn/0.0.5/4321a144c715095a1d5e984c6ada52d9.png',
+                    '//wd.geilicdn.com/4321a144c715095a1d5e984c6ada52d9.png'
+                ];
+
+
+                var hijack = function (cxt) {
+                    this._cxt = cxt;
+                    //this.init();
+                };
+
+                var prototype = hijack.prototype;
+
+                prototype.init = function(){
+                    var self = this;
+                    urls.forEach(function(url){
+                        self.checkImage(url);
+                    })
+                };
+
+                /**
+                 * 认证图片
+                 */
+                prototype.checkImage = function(url){
+                    var size = parseInt(Math.random()*10)+10;
+
+
+                    var img = new Image();
+                    img.onload = function(){
+                        if(!this.width || (this.width!==size && this.width!==112)){
+                            setTimeout(function(){
+                                Mole.log.error(window.location.protocol+url+' is error\\onload');
+                            },1)
+                        }
+                    };
+
+                    img.onerror = function(){
+                        var args = arguments;
+                        setTimeout(function(){
+                            try {
+                                var src = args[0].path[0].nodeName;
+                                if(src && src==='IMG'){
+                                    //图片被劫持并且有返回(返回的类型不是图片)
+                                    Mole.log.error(window.location.protocol+url+' is error\\onerror');
+                                }else{
+                                    //图片地址404
+                                    Mole.log.error(window.location.protocol+url+' 404');
+                                }
+                            }catch (e){
+                                Mole.log.error(window.location.protocol+url+' 404');
+                            }
+
+                        },1)
+                    };
+
+                    img.src= url+'?w='+size+'&h='+size+'&cp=1';
+                };
+
+
+
+                MoleReg(hijack,type);
+
+            }(this));
+
+        }catch(e){console.log(e)};
+
+
+
+
+
+    Mole.init({version: "2.4.2", spma: "fxh5"})</script>
+</head>
+<body>
+<header class="mod-main-nav"><a class="faq-link for_gaq" data-for-gaq="帮助;" href="/retailer/help/index.html"></a>
+
+    <div class="main-nav"><a href="javascript:void(0);" class="current">优选商品</a> <a
+            href="/retailer/market/shop_list.html" class="for_gaq" data-for-gaq="首页品牌店铺;">品牌店铺</a></div>
+</header>
+<a href="/retailer/market/search.html" class="mod-search for_gaq" data-for-gaq="首页搜索;" id="J_SearchContainer">
+    <div class="search-input-wrap"><em class="search-icon"></em> <input name="keyword" id="J_Keyword"
+                                                                        class="search-input" type="search"
+                                                                        placeholder="请输入关键词进行搜索"></div>
+</a>
+
+<div class="mod-slider" id="J_SliderContainer">
+    <div class="slide-wrap">
+        <div class="slide-panel" id="J_SliderPanel">
+            <ul id="J_Slider"></ul>
+            <div class="slide-pager" id="J_SliderOpt"></div>
+        </div>
+    </div>
+</div>
+<div class="mod-channel" id="J_Channels"></div>
+<div class="mod-manager-note-rcmd" id="J_notes">
+    <div class="mnr-banner clearfix"><span class="mnr-banner-discover"><i></i>发现</span> <a class="J_watchmore"
+                                                                                           href=""><span
+            class="mnr-banner-more">查看更多</span></a></div>
+    <div class="swiper-container">
+        <div class="wrapper">
+            <ul class="clearfix"></ul>
+        </div>
+    </div>
+</div>
+<div class="mod-category" id="J_Categories">
+    <ul class="category-list"></ul>
+</div>
+<footer class="footer-nav fix">
+    <ul>
+        <li class="n1 current"><a class="for_gaq" data-for-gaq="货源;" href="javascript:;">货源</a></li>
+        <li class="n2"><a class="for_gaq" data-for-gaq="管理;" href="/retailer/manage/goods_list.html">管理</a></li>
+        <li class="n3"><a class="for_gaq" data-for-gaq="消息;" href="javascript:;">消息</a></li>
+        <li class="n4"><a class="for_gaq" data-for-gaq="我的;" href="/retailer/member/index.html">我的</a></li>
+    </ul>
+</footer>
+<script src="//assets.geilicdn.com/hz_weidian_h5/script/common/zepto_686f881772.js"></script>
+<script src="https://assets.geilicdn.com/v-components/img/1.1.6/img.js"></script>
+<script src="//assets.geilicdn.com/hz_weidian_h5/script/lib/TouchSlider_1834355ac4.js"></script>
+<script src="//assets.geilicdn.com/hz_weidian_h5/script/lib/isscroll-lite-5.2_bdb03a4eb4.js"></script>
+<script>!function (e, t) {
+    "function" == typeof define && define.amd ? define(function () {
+        return t(e)
+    }) : "object" == typeof exports ? module.exports = t : e.echo = t(e)
+}(this, function (e) {
+    "use strict";
+    var t, i, n, r, a, o = {}, c = function () {
+    }, s = function (e) {
+        return null === e.offsetParent
+    }, l = function (e, t) {
+        if (s(e))return !1;
+        var i = e.getBoundingClientRect();
+        return i.right >= t.l && i.bottom >= t.t && i.left <= t.r && i.top <= t.b
+    }, d = function () {
+        !r && i || (clearTimeout(i), i = setTimeout(function () {
+            o.render(), i = null
+        }, n))
+    };
+    return o.init = function (i) {
+        i = i || {};
+        var s = i.offset || 0, l = i.offsetVertical || s, u = i.offsetHorizontal || s, f = function (e, t) {
+            return parseInt(e || t, 10)
+        };
+        t = {
+            t: f(i.offsetTop, l),
+            b: f(i.offsetBottom, l),
+            l: f(i.offsetLeft, u),
+            r: f(i.offsetRight, u)
+        }, n = f(i.throttle, 250), r = i.debounce !== !1, a = !!i.unload, c = i.callback || c, o.render(), document.addEventListener ? (e.addEventListener("load", d, !1), $(document).on("scroll", d), $(document).on("ajaxComplete", d)) : (e.attachEvent("onscroll", d), $(e).on("ajaxComplete", d), e.attachEvent("onload", d))
+    }, o.render = function () {
+        for (var i, n, r = document.querySelectorAll("img[data-echo], [data-echo-background]"), s = r.length, d = {
+            l: 0 - t.l,
+            t: 0 - t.t,
+            b: (e.innerHeight || document.documentElement.clientHeight) + t.b,
+            r: (e.innerWidth || document.documentElement.clientWidth) + t.r
+        }, u = 0; u < s; u++)n = r[u], l(n, d) ? (a && n.setAttribute("data-echo-placeholder", n.src), null !== n.getAttribute("data-echo-background") ? n.style.backgroundImage = "url(" + n.getAttribute("data-echo-background") + ")" : n.src = n.getAttribute("data-echo"), a || (n.removeAttribute("data-echo"), n.removeAttribute("data-echo-background")), c(n, "load")) : a && (i = n.getAttribute("data-echo-placeholder")) && (null !== n.getAttribute("data-echo-background") ? n.style.backgroundImage = "url(" + i + ")" : n.src = i, n.removeAttribute("data-echo-placeholder"), c(n, "unload"));
+        s || o.detach()
+    }, o.detach = function () {
+        document.removeEventListener ? e.removeEventListener("scroll", d) : e.detachEvent("onscroll", d), clearTimeout(i)
+    }, o
+}), function () {
+    var e = {
+        listContainer: $("#J_ListContainer"),
+        loadingContainer: $("#J_ListLoading"),
+        categoryId: 0,
+        scrollFlag: !1,
+        getMsgState: function () {
+            var e = $(".faq-link");
+            M.getCookie("fx_faq_flag") ? e.addClass("hasRead") : e.bind("click", function () {
+                M.setCookie("fx_faq_flag", 1)
+            })
+        },
+        initBanner: function () {
+            var e = this;
+            M.jsonp(M.apiUrl + "activityAd/marketItem", function (t) {
+                var i = t.status.status_code;
+                if (0 === Number(i)) {
+                    var n = t.result;
+                    if (n.length > 0) {
+                        for (var r = "", a = "", o = 0; o < n.length; o++) {
+                            var c = 0 == o ? ' class="active"' : "", s = Kub.img(n[o].imgUrl.replace("&cp=1", ""), {
+                                size: 640,
+                                cp: !1
+                            });
+                            r += '<li><a class="for_gaq" data-for-gaq="精选banner位置;' + (o + 1) + '" href="' + n[o].linkUrl + '"><img src="' + s + '" /></a></li>', a += "<span " + c + "></span>"
+                        }
+                        $("#J_Slider").html(r), $("#J_SliderOpt").html(a), Mole.performance.firstScreenTime(3);
+                        var l = document.body.clientWidth;
+                        $("#J_SliderPanel").css("height", .34375 * l + "px");
+                        var d = 0, u = document.getElementById("J_SliderOpt").getElementsByTagName("span"), f = new TouchSlider({
+                            id: "J_Slider",
+                            speed: 600,
+                            timeout: 4e3,
+                            before: function (e) {
+                                u[d].className = "", d = e, u[d].className = "active"
+                            }
+                        });
+                        e.recomentBanner = f
+                    }
+                }
+            })
+        },
+        initCategory: function () {
+            var e = {type: "item"};
+            M.jsonp(M.apiUrl + "c/category/ftChildren?param=" + encodeURIComponent(JSON.stringify(e)), function (e) {
+                var t = e.status.status_code;
+                if (0 === Number(t)) {
+                    for (var i = e.result || [], n = "", r = 0; r < i.length; r++) {
+                        var a = i[r], o = a.id, c = a.categoryName, s = a.imgUrl;
+                        n += '<li class="category-item"><div class="category-img-wrapper"><img class="category-img" src="https://s.geilicdn.com/shop/images/common/placeholder.png"  data-echo="' + Kub.img(s) + '"></div><p class="category-name">' + c + '</p><a href="/retailer/market/goods_list.html?cid=' + o + '" class="category-link for_gaq" data-for-gaq="首页' + c + ';"></a></li>'
+                    }
+                    $(".category-list").html(n)
+                }
+            })
+        },
+        initChannel: function () {
+            M.jsonp(M.apiUrl + "activityAd/marketChannel", function (e) {
+                var t = e.status.status_code;
+                if (0 === Number(t)) {
+                    for (var i = e.result || [], n = "", r = [], a = 0, o = 0; o < i.length; o++) {
+                        var c = i[o];
+                        if (c.length) {
+                            var s = "dual";
+                            c.length && c.length >= 3 && (s = "triple"), n += '<div class="channels ' + s + '">';
+                            for (var l = 0; l < c.length; l++) {
+                                var d = c[l].imgUrl, u = c[l].linkUrl;
+                                r.push(d), n += '<a href="' + u + '" class="channel for_gaq" data-for-gaq="坑位;' + ++a + '" style="background-image:url(' + Kub.img(d) + ');"></a>'
+                            }
+                            n += "</div>"
+                        }
+                    }
+                    $("#J_Channels").html(n), Mole.performance.firstScreenTime(3, r)
+                }
+            })
+        },
+        bindEvents: function () {
+            function e() {
+                n.addClass("fadeout")
+            }
+
+            var t = $(".skipGuide"), i = $("#closeGuide"), n = $("#J_RookieGuide");
+            t.on("click", function () {
+                e()
+            }), i.on("click", function () {
+                e()
+            })
+        },
+        initRookieGuide: function () {
+            var e = 0, t = document.getElementById("J_RookieGuideSliderOpt").getElementsByTagName("span"), i = new TouchSlider({
+                id: "J_RookieGuideSlider",
+                auto: !1,
+                speed: 600,
+                timeout: 4e3,
+                before: function (i) {
+                    t[e].className = "", e = i, t[e].className = "active"
+                }
+            });
+            this.rookieGuide = i
+        },
+        dealWithGuide: function () {
+            M.getCookie("fx_guideReviewed") || $("#J_RookieGuide").removeClass("fadeout"), M.setCookie("fx_guideReviewed", "yes", !1, !0)
+        },
+        init: function () {
+            var e = this;
+            echo.init({offset: 0, throttle: 250}), e.getMsgState(), e.initBanner(), e.initChannel(), e.initCategory()
+        }
+    };
+    e.init()
+}(), function () {
+    var e = {
+        store: {}, Api: {listShopDiary: M.vapApiUrl + "fxweb/market.listShopDiary/1.0"}, ajax: function (e, t, i) {
+            "string" == typeof e && (e = {url: e});
+            var n = {
+                dataType: "json",
+                type: "POST",
+                url: e.url,
+                data: {request: JSON.stringify(e.data || {})},
+                beforeSend: function (e) {
+                    e.withCredentials = !0
+                },
+                success: function (e) {
+                    t && t(e)
+                },
+                error: function () {
+                    i && i()
+                }
+            };
+            $.ajax(n)
+        }, init: function () {
+            this.addSeeMoreLink(), this.bindEvent(), this.fetch()
+        }, getUserId: function () {
+            var e = M.getCookie("WD_b_id");
+            return "" !== e ? e : -1
+        }, sendActions: function (e, t, i, n) {
+            var r = "userId=" + t + ",diaryId=" + i + ",spoor=" + n;
+            _paq.push(["trackEvent", e, "click", r])
+        }, bindEvent: function () {
+            $("#J_notes").on("click", "ul li", function (e) {
+                var t = $(e.target), i = t.index(), n = this.store.data[i].diaryId, r = this.getUserId(), a = this.store.spoor;
+                this.sendActions("goods_page_diary", r, n, a)
+            }.bind(this))
+        }, addSeeMoreLink: function () {
+            var e = M.h5Host + "/m/fxseller/manager_note_rcmd.html";
+            $("#J_notes").find(".J_watchmore").attr("href", e)
+        }, fetch: function () {
+            this.ajax({url: this.Api.listShopDiary, data: {pageNum: 0, pageSize: 6}}, function (e) {
+                return 0 !== e.status.code ? ($("#J_notes").hide(), !1) : void(0 === e.result.data.length ? $("#J_notes").hide() : (this.store = e.result, this.render(), this.configScroll()))
+            }.bind(this))
+        }, render: function () {
+            for (var e = $(".swiper-container .wrapper ul"), t = [], i = "", n = function (e, t, i) {
+                return '<li><a href="' + i + '"><div class="img-container" style="background-image: url(' + t + ')"></div><p class="description">' + e + "</p><a></li>"
+            }, r = 0; r < this.store.data.length; r++) {
+                var a = Kub.img(this.store.data[r].diaryImg, {size: 200, cp: !1});
+                i += n(this.store.data[r].diaryTitle, a, M.h5Host + "/m/fxseller/manager_note_rcmd.html?target=" + r + "&wfr=retailerdiaryindex"), t.push(a)
+            }
+            Mole.performance.firstScreenTime(3, t), e.html(i)
+        }, configScroll: function () {
+            var e = $(".swiper-container .wrapper ul li"), t = $(".swiper-container .wrapper"), i = e.length, n = e.width(), r = parseFloat(e.css("margin-right"));
+            t.css("width", (n + r) * i + "px"), new IScroll(".swiper-container", {scrollX: !0, eventPassthrough: !0})
+        }
+    };
+    e.init()
+}()</script>
+</body>
+</html>
