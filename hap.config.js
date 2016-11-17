@@ -36,7 +36,7 @@ var config = {
     port: 8080,
 
     //为了构建性能，react默认禁止使用，如需使用则需启用
-    //useReact : true,
+    useReact : true,
 
     //静态资源url路径
     staticUrl: getStaticUrl = function(args) {
