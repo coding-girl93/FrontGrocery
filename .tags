@@ -1,0 +1,4 @@
+clickText	/Users/lyl/workspace/github/FrontGrocery/src/pages/react-redux/actions/actions.js	/^export function clickText(){$/;"	function	line:3
+clickButton	/Users/lyl/workspace/github/FrontGrocery/src/pages/react-redux/actions/actions.js	/^export function clickButton() {$/;"	function	line:8
+myApp	/Users/lyl/workspace/github/FrontGrocery/src/pages/react-redux/reducers/reducers.js	/^export default function myApp(state={text:"hello"},action){$/;"	function	line:4
+switch	/Users/lyl/workspace/github/FrontGrocery/src/pages/react-redux/reducers/reducers.js	/^    switch (action.type) {$/;"	function	line:5

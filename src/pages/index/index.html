@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    function startWebcam(e) {
+        navigator.getUserMedia({
+            video: true,
+            audio: true
+        }, onSuccess, onError);
+
+        function onSuccess(stream) {
+
+            var video = document.getElementById('webcam');
+
+            if (window.URL) {
+                video.src = window.URL.createObjectURL(stream);
+            } else {
+                video.src = stream;
+            }
+
+            video.autoplay = true;
+            //or video.play();
+        }
+
+        function onError() {}
+    }
+    </script>
+</head>
+<body>
+    <button id="run" onclick="startWebcam()">开启网络摄像头</button>
+    <Br/>
+    <video id="webcam"></video>
+</body>
+</html>

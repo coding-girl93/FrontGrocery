@@ -1,6 +1,5 @@
 {
   "name": "hap",
-  "description": "脚手架",
   "main": "gulpfile.js",
   "authors": [
     "longjia"
@@ -9,8 +8,10 @@
   "keywords": [
     "gulp",
     "webpack",
-    "component",
     "bower",
+    "component",
+    "react",
+    "vue",
     "hap"
   ],
   "moduleType": [],
@@ -27,7 +28,6 @@
     "media": "https://github.com/longjiarun/media.git",
     "reset": "https://github.com/longjiarun/reset.git",
     "kub": "latest",
-    "Mole": "http://gitlab.vdian.net/v-components/Mole.git",
     "zepto" : "http://gitlab.vdian.net/v-components/vdzepto.git"
   }
 }

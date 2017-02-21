@@ -1,0 +1,39 @@
+
+@keyframes left {
+    to{
+        transform: translateX(-100rem)
+    }
+}
+#container{
+    display: inline-block;
+}
+#container div{
+    font-size: 6rem;
+    width: 60rem;
+    height: 10rem;
+    display: inline-block;
+    color: #fff;
+    line-height: 10rem;
+    position: relative;
+    overflow: hidden;
+    background-color: pink;
+    white-space: nowrap;
+}
+
+#container div span{
+    display: inline-block;
+}
+#container div span{
+    transform: translateX(10rem);
+    animation: left_div 20s linear infinite;
+    text-shadow: 20px 0px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes left_div{
+    to{
+        transform: translateX(-100rem)
+    }
+}
+.main{
+    display: inline-block;
+}

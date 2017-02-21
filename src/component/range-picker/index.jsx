@@ -8,7 +8,8 @@ export default class DateRange extends React.Component {
     render(){
         return(
             <Modal style={{width:400}} title='自定义时间范围' visible={this.props.visible} onCancel={this.handleCancel}>
-                <DatePicker/>
+                自<DatePicker showTime/>
+                至<DatePicker showTime/>
             </Modal>
         )
     }
